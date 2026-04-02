@@ -85,11 +85,11 @@ export default function App() {
           {/* Desktop Links */}
           <div className="hidden lg:flex items-center gap-10">
             <NavLink label="Discover" />
-            <NavLink label="Artists" />
-            <NavLink label="Playlists" />
-            <NavLink label="About" />
+            <NavLink label="Download" />
+            <NavLink label="Premium" />
+            <NavLink label="Web Player" />
             <button className="px-6 py-2.5 bg-white text-black font-bold rounded-full text-sm hover:bg-brand hover:text-white transition-all duration-300">
-              Get Started
+              Sign Up
             </button>
           </div>
 
@@ -104,11 +104,11 @@ export default function App() {
       </nav>
 
       {/* Hero Section */}
-      <header className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+      <header className="relative min-h-[110vh] flex items-center pt-20 overflow-hidden">
         <div className="absolute inset-0 z-0">
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/60 to-black z-10" />
           <img 
-            src="https://picsum.photos/seed/hero-bg/1920/1080?blur=2" 
+            src="/michael.jpg" 
             alt="Hero Background" 
             className="w-full h-full object-cover opacity-40 scale-110 animate-pulse"
             style={{ animationDuration: '10s' }}
@@ -118,53 +118,25 @@ export default function App() {
 
         <div className="section-container relative z-20 w-full">
           <div className="max-w-3xl space-y-8">
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full backdrop-blur-md"
-            >
-              <Sparkles size={16} className="text-brand" />
-              <span className="text-xs font-bold uppercase tracking-widest text-zinc-300">The Future of Sound</span>
-            </motion.div>
-            
-            <motion.h1 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-6xl lg:text-8xl font-display font-extrabold tracking-tighter leading-[0.9] text-gradient"
-            >
-              ELEVATE YOUR <br />
-              <span className="text-brand">AUDITORY</span> WORLD
-            </motion.h1>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-xl text-zinc-400 max-w-xl leading-relaxed font-light"
-            >
-              Beatstream is a premium music experience designed for the modern listener. 
-              Discover high-fidelity soundscapes curated by artists from around the globe.
-            </motion.p>
-
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="flex flex-wrap items-center gap-6 pt-4"
-            >
-              <button 
-                onClick={togglePlay}
-                className="px-10 py-4 bg-brand hover:bg-brand/90 text-white font-bold rounded-full flex items-center gap-3 transition-all hover:scale-105 active:scale-95 shadow-2xl shadow-brand/20"
+            <div className="w-fit">
+              <motion.h1 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-6xl lg:text-8xl font-display font-extrabold tracking-tighter leading-[0.9] text-white"
               >
-                {isPlaying ? 'Pause Music' : 'Start Listening'}
-                {isPlaying ? <Pause size={20} /> : <ChevronRight size={20} />}
-              </button>
-              <button className="px-10 py-4 bg-white/5 hover:bg-white/10 border border-white/10 backdrop-blur-md text-white font-bold rounded-full transition-all">
-                Explore Artists
-              </button>
-            </motion.div>
+                Just <span className="text-brand">BEAT</span> It
+              </motion.h1>
+
+              <motion.p 
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-xl text-zinc-400 leading-relaxed font-semibold text-right mt-2"
+              >
+                - Michael Jackson
+              </motion.p>
+            </div>
           </div>
         </div>
 
@@ -172,6 +144,14 @@ export default function App() {
         <div className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
           <span className="text-[10px] uppercase tracking-[0.3em] font-bold">Scroll</span>
           <div className="w-[1px] h-12 bg-gradient-to-b from-brand to-transparent" />
+          <div className="flex gap-2 mt-4">
+            {[...Array(4)].map((_, i) => (
+              <div 
+                key={i} 
+                className={`w-1.5 h-1.5 rounded-full ${i === 0 ? 'bg-brand' : 'bg-white/20'}`} 
+              />
+            ))}
+          </div>
         </div>
       </header>
 
@@ -459,11 +439,11 @@ export default function App() {
 
               <nav className="flex flex-col gap-8 items-center justify-center flex-1">
                 <MobileNavLink label="Discover" />
-                <MobileNavLink label="Artists" />
-                <MobileNavLink label="Playlists" />
-                <MobileNavLink label="About" />
+                <MobileNavLink label="Download" />
+                <MobileNavLink label="Premium" />
+                <MobileNavLink label="Web Player" />
                 <button className="mt-8 px-12 py-4 bg-brand text-white font-bold rounded-full text-lg">
-                  Get Started
+                  Sign Up
                 </button>
               </nav>
             </motion.div>
