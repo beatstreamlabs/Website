@@ -73,13 +73,14 @@ export default function App() {
   return (
     <div className="min-h-screen bg-black text-white selection:bg-brand selection:text-white">
       {/* Navigation */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'glass-nav py-4' : 'bg-transparent py-8'}`}>
+      <nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-[background-color,backdrop-filter] duration-700 ease-in-out will-change-[background-color,backdrop-filter] py-5 ${
+          scrolled ? 'glass-nav' : 'bg-transparent'
+        }`}
+      >
         <div className="section-container flex items-center justify-between">
           <div className="flex items-center gap-2 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-            <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center transition-transform group-hover:rotate-12">
-              <Music2 size={24} className="text-white" />
-            </div>
-            <span className="text-2xl font-display font-bold tracking-tighter">BEATSTREAM</span>
+            <img src="/beatstream.png" alt="Beatstream Logo" className="h-16 w-auto" referrerPolicy="no-referrer" />
           </div>
 
           {/* Desktop Links */}
@@ -110,7 +111,7 @@ export default function App() {
           <img 
             src="/michael.jpg" 
             alt="Hero Background" 
-            className="w-full h-full object-cover opacity-40 scale-110 animate-pulse"
+            className="w-full h-full object-cover object-top opacity-40 scale-110 animate-pulse"
             style={{ animationDuration: '10s' }}
             referrerPolicy="no-referrer"
           />
@@ -155,97 +156,31 @@ export default function App() {
         </div>
       </header>
 
-      {/* Featured Artists Section */}
-      <section className="py-32 bg-black">
+      {/* Our Vision Section */}
+      <section className="pt-32 pb-0 bg-black">
         <div className="section-container">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="space-y-4">
-              <h2 className="text-4xl lg:text-5xl font-display font-bold tracking-tight">Featured Artists</h2>
-              <p className="text-zinc-500 max-w-md">Meet the visionaries pushing the boundaries of contemporary sound.</p>
+          <div className="flex flex-col gap-6">
+            <div className="space-y-8">
+              <div className="inline-block">
+                <h2 className="text-4xl lg:text-5xl font-display font-bold tracking-tight pb-2 border-b border-brand">Our Vision</h2>
+              </div>
+              <p className="text-zinc-400 text-lg leading-relaxed w-full">
+                Beatstream was created with one simple vision: to make music more powerful, personal, and meaningful. We believe that listening to music should be more than simply pressing play; it should feel refined, immersive, and unforgettable. Our vision is to create a platform where every song, every artist, and every moment comes together seamlessly. We want Beatstream to become a place where music is not only heard, but experienced in a smarter and more impactful way. We are building an app that is simple to use, elegant in design, and created for people who truly value music. From discovering new sounds to returning to the songs that matter most, Beatstream is designed to bring every listener closer to the music they love. We believe the future of music should feel cleaner, faster, and more sophisticated. That is why every detail within Beatstream is crafted with precision, purpose, and care. We want Beatstream to inspire discovery, creativity, and connection through every listening experience. Our goal is to create a world where finding the right song feels effortless, intuitive, and rewarding. We are constantly exploring new ways to make music more modern, beautiful, and deeply engaging. Every step we take is driven by our commitment to shaping the future of music for listeners everywhere.
+                <br /><br />
+                Our journey is only beginning, but our vision is clear: to redefine the way the world experiences music.
+              </p>
             </div>
-            <button className="group flex items-center gap-2 text-sm font-bold text-zinc-400 hover:text-white transition-colors">
-              View All Artists
-              <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
-            </button>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-10">
-            {TRENDING_ARTISTS.slice(0, 4).map((artist, idx) => (
-              <motion.div 
-                key={artist.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
-                className="group cursor-pointer"
-              >
-                <div className="relative aspect-[4/5] rounded-3xl overflow-hidden mb-6 bg-zinc-900">
-                  <img 
-                    src={artist.image} 
-                    alt={artist.name} 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                  <div className="absolute bottom-6 left-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
-                    <button className="w-full py-3 bg-white text-black font-bold rounded-xl text-sm">
-                      View Profile
-                    </button>
-                  </div>
-                </div>
-                <h3 className="text-xl font-bold group-hover:text-brand transition-colors">{artist.name}</h3>
-                <p className="text-sm text-zinc-500 tracking-wide uppercase">{artist.genre}</p>
-              </motion.div>
-            ))}
           </div>
         </div>
       </section>
 
       {/* Playlists Section */}
-      <section className="py-32 bg-zinc-950">
+      <section className="pt-[4.5cm] pb-32 bg-black">
         <div className="section-container">
-          <div className="text-center max-w-2xl mx-auto mb-20 space-y-4">
-            <h2 className="text-4xl lg:text-5xl font-display font-bold tracking-tight">Curated Playlists</h2>
-            <p className="text-zinc-500">Hand-picked selections for every mood, moment, and atmosphere.</p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {FEATURED_PLAYLISTS.map((playlist, idx) => (
-              <motion.div 
-                key={playlist.id}
-                initial={{ opacity: 0, x: idx % 2 === 0 ? -20 : 20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                className="group relative h-[300px] rounded-3xl overflow-hidden cursor-pointer"
-              >
-                <img 
-                  src={playlist.cover} 
-                  alt={playlist.title} 
-                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110"
-                  referrerPolicy="no-referrer"
-                />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent" />
-                <div className="relative h-full p-10 flex flex-col justify-center max-w-xs space-y-4">
-                  <h3 className="text-3xl font-display font-bold leading-tight">{playlist.title}</h3>
-                  <p className="text-sm text-zinc-400 line-clamp-2">{playlist.description}</p>
-                  <div className="pt-4">
-                    <button 
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handlePlayPlaylist(playlist.id);
-                      }}
-                      className="w-12 h-12 bg-brand rounded-full flex items-center justify-center transition-transform group-hover:scale-110"
-                    >
-                      {currentTrack?.id === playlist.tracks[0]?.id && isPlaying ? (
-                        <Pause size={20} fill="currentColor" />
-                      ) : (
-                        <Play size={20} fill="currentColor" className="ml-1" />
-                      )}
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+          <div className="mb-20 space-y-8">
+            <div className="inline-block">
+              <h2 className="text-4xl lg:text-5xl font-display font-bold tracking-tight pb-2 border-b border-brand">Explore</h2>
+            </div>
           </div>
         </div>
       </section>
@@ -341,10 +276,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 mb-20">
             <div className="space-y-8">
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">
-                  <Music2 size={20} className="text-white" />
-                </div>
-                <span className="text-xl font-display font-bold tracking-tighter">BEATSTREAM</span>
+                <img src="/beatstream.png" alt="Beatstream Logo" className="h-8 w-auto" referrerPolicy="no-referrer" />
               </div>
               <p className="text-zinc-500 text-sm leading-relaxed">
                 Redefining the digital music experience through curation, quality, and community.
@@ -424,10 +356,7 @@ export default function App() {
             >
               <div className="flex items-center justify-between mb-16">
                 <div className="flex items-center gap-2">
-                  <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center">
-                    <Music2 size={20} className="text-white" />
-                  </div>
-                  <span className="text-2xl font-display font-bold tracking-tighter">BEATSTREAM</span>
+                  <img src="/beatstream.png" alt="Beatstream Logo" className="h-18 w-auto" referrerPolicy="no-referrer" />
                 </div>
                 <button 
                   onClick={() => setIsMobileMenuOpen(false)}
@@ -448,68 +377,6 @@ export default function App() {
               </nav>
             </motion.div>
           </>
-        )}
-      </AnimatePresence>
-      {/* Music Player Bar */}
-      <AnimatePresence>
-        {currentTrack && (
-          <motion.div 
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            exit={{ y: 100 }}
-            className="fixed bottom-0 left-0 right-0 z-[100] bg-zinc-900/90 backdrop-blur-xl border-t border-white/10 px-6 py-4"
-          >
-            <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-              {/* Track Info */}
-              <div className="flex items-center gap-4 w-1/3">
-                <div className="w-12 h-12 bg-zinc-800 rounded-lg overflow-hidden flex-shrink-0">
-                  <img 
-                    src={`https://picsum.photos/seed/${currentTrack.id}/100/100`} 
-                    alt={currentTrack.title} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <div className="min-w-0">
-                  <h4 className="text-sm font-bold truncate">{currentTrack.title}</h4>
-                  <p className="text-xs text-zinc-500 truncate">{currentTrack.artist}</p>
-                </div>
-              </div>
-
-              {/* Controls */}
-              <div className="flex flex-col items-center gap-2 flex-1">
-                <div className="flex items-center gap-6">
-                  <button className="text-zinc-500 hover:text-white transition-colors">
-                    <SkipBack size={20} fill="currentColor" />
-                  </button>
-                  <button 
-                    onClick={togglePlay}
-                    className="w-10 h-10 bg-white text-black rounded-full flex items-center justify-center hover:scale-105 transition-transform"
-                  >
-                    {isPlaying ? <Pause size={20} fill="currentColor" /> : <Play size={20} fill="currentColor" className="ml-1" />}
-                  </button>
-                  <button className="text-zinc-500 hover:text-white transition-colors">
-                    <SkipForward size={20} fill="currentColor" />
-                  </button>
-                </div>
-                <div className="w-full max-w-md h-1 bg-white/10 rounded-full overflow-hidden">
-                  <motion.div 
-                    className="h-full bg-brand"
-                    initial={{ width: 0 }}
-                    animate={{ width: isPlaying ? '100%' : '30%' }}
-                    transition={{ duration: isPlaying ? 300 : 0.5 }}
-                  />
-                </div>
-              </div>
-
-              {/* Volume */}
-              <div className="flex items-center justify-end gap-3 w-1/3">
-                <Volume2 size={18} className="text-zinc-500" />
-                <div className="w-24 h-1 bg-white/10 rounded-full">
-                  <div className="w-2/3 h-full bg-white/40 rounded-full" />
-                </div>
-              </div>
-            </div>
-          </motion.div>
         )}
       </AnimatePresence>
     </div>
