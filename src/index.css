@@ -12,8 +12,11 @@
 }
 
 @layer base {
+  html {
+    @apply relative;
+  }
   body {
-    @apply bg-black text-white font-sans antialiased selection:bg-brand selection:text-white overflow-x-hidden;
+    @apply relative bg-black text-white font-sans antialiased selection:bg-brand selection:text-white overflow-x-hidden;
   }
 }
 
